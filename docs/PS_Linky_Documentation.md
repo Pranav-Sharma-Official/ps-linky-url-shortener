@@ -856,7 +856,7 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 | **Frontend Repository** | [Frontend Link](https://github.com/Pranav-Sharma-Official/ps-linky-url-shortener/tree/main/urlshortener-frontend) |
 | **Backend Repository** | [Backend Link](https://github.com/Pranav-Sharma-Official/ps-linky-url-shortener/tree/main/urlshortener) |
 | **Live Demo** | [Live Link](https://ps-linky.netlify.app/) |
-| **Hoppscotch Collection** | [Link](Hoppscotch_Export.json) |
+| **Hoppscotch Collection** | [Collection Link](Hoppscotch_Export.json) |
 | **Docker Hub** | [Image Link](https://hub.docker.com/repository/docker/pranavsharmaofficial/ps-linky-url-shortener/general) |
 | **Video Demo** | Uploading Soon |
 | **Developer GitHub** | [Profile Link](https://github.com/Pranav-Sharma-Official/) |
