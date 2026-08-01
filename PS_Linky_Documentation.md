@@ -8,7 +8,7 @@ Built on a modern production-grade stack — Spring Boot 4 on the backend and Re
 
 ---
 
-## Long Description
+## Description
 
 PS Linky was conceived as a practical, production-ready implementation of one of the most foundational tools of the internet — the URL shortener. The project goes well beyond a simple toy application; it is architected with layered separation of concerns, stateless security, and a polished frontend experience that would feel at home alongside commercial products.
 
@@ -192,9 +192,6 @@ URL_Shortener/
 - View aggregate daily click chart for all personal links
 - View per-link daily click analytics via inline expandable bar chart
 - Toast notifications for success/failure of all actions
-
-## Admin Features
-- Unknown (no separate admin role or admin panel was detected in the codebase)
 
 ## Analytics
 - Total click count per URL (stored as integer on `UrlMapping`, incremented on each redirect)
@@ -578,7 +575,7 @@ When a user opens a short URL, the following exact sequence of events occurs:
 
 1. **User opens the short link** (e.g., shared on social media as `https://app.pslinky.com/s/Ab3Cd8Ef`)
 2. **React Router** on the frontend matches the `/s/:url` route pattern and renders `ShortenUrlPage`
-3. **`ShortenUrlPage` useEffect** fires immediately on mount: `window.location.href = VITE_BACKEND_URL + "/" + url` — this redirects the browser directly to the backend server (e.g., `https://api.pslinky.com/Ab3Cd8Ef`)
+3. **`ShortenUrlPage` useEffect** fires immediately on mount: `window.location.href = VITE_BACKEND_URL + "/" + url` — this redirects the browser directly to the backend server
 4. **Browser sends `GET /Ab3Cd8Ef`** to the Spring Boot backend
 5. **`JwtAuthenticationFilter`** runs — no JWT found, proceeds unauthenticated (the endpoint is public)
 6. **`SecurityFilterChain`** evaluates `/{shortUrl}` — matches `.requestMatchers("/{shortUrl}").permitAll()` — passes
@@ -702,9 +699,6 @@ When a user opens a short URL, the following exact sequence of events occurs:
 ## Pagination
 - **Not implemented** in the current version. All user URLs are returned in a single API response. This should be addressed as user link counts grow.
 
-## Compression
-- **Not explicitly configured** at the application level. Neon PostgreSQL handles connection-level compression. Vite's build output is optimized with tree-shaking and minification.
-
 ## Database Optimization
 - **Bulk IN-clause query**: `findByUrlMappingInAndClickDateBetween(List<UrlMapping>, ...)` fetches click events for all user URLs in a single DB round-trip instead of N separate queries.
 - **JPA lazy loading**: `@OneToMany(mappedBy = "urlMapping")` on `UrlMapping.clickEvents` defaults to `LAZY` fetch type in JPA — click events are not loaded when fetching URL mappings for the dashboard list.
@@ -725,11 +719,11 @@ When a user opens a short URL, the following exact sequence of events occurs:
 
 ## Frontend Hosting
 - Static build output (`dist/`) — can be hosted on any static hosting platform (Vercel, Netlify, GitHub Pages, S3 + CloudFront, etc.)
-- Unknown (specific frontend hosting platform not determined from codebase)
+- Hosted on Netlify
 
 ## Backend Hosting
 - Dockerized Spring Boot application
-- Unknown (specific backend hosting platform not determined from codebase — could be Railway, Render, Fly.io, AWS EC2, etc.)
+- Hosted on Render
 
 ## Database Hosting
 - **Production**: Neon serverless PostgreSQL (`ep-silent-paper-azh8yn8e.c-3.ap-southeast-1.aws.neon.tech`)
@@ -793,12 +787,6 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 | **Build Tool** | Maven Wrapper (`mvnw`) |
 | **Build Command** | `mvn clean package -DskipTests` |
 
-## Docker Compose
-- **Not found** in the repository. A `docker-compose.yml` could be created to orchestrate the backend container + a PostgreSQL container for local development.
-
-## Volumes
-- **Not configured** in the Dockerfile. A production deployment would typically mount a volume for logs if file-based logging is used.
-
 ---
 
 # Testing
@@ -808,18 +796,9 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 - No test files were found in the directory during analysis
 - **Status**: No unit tests implemented (tests are skipped in Docker build with `-DskipTests`)
 
-## Integration Tests
-- **Not implemented**
-
 ## Manual Testing
-- The application was manually tested by running the frontend dev server and backend locally
+- The application was manually tested by running the frontend dev server and backend locally using Hoppscotch
 - User flows tested: registration, login, URL shortening, copying short URLs, analytics viewing, logout
-
-## Postman
-- **Unknown** — No Postman collection file was found in the repository. API endpoints can be easily tested with Postman given the documented REST API table above.
-
-## Spring Security Test
-- `spring-boot-starter-security-test` dependency is included in `pom.xml` (test scope), indicating intent to write security integration tests in the future.
 
 ---
 
@@ -873,150 +852,16 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
 | Resource | URL |
 |---|---|
-| **Repository** | https://github.com/Pranav-Sharma-Official/ (exact repo URL Unknown) |
-| **Frontend Repository** | Unknown (same monorepo or separate — Unknown) |
-| **Backend Repository** | Unknown (same monorepo — `urlshortener/` folder) |
-| **Live Demo** | Unknown |
-| **Swagger / OpenAPI** | Not implemented |
-| **Postman Collection** | Unknown |
-| **Docker Hub** | Unknown |
-| **Video Demo** | Unknown |
-| **Developer GitHub** | https://github.com/Pranav-Sharma-Official/ |
-| **Developer LinkedIn** | https://www.linkedin.com/in/-pranav--sharma-/ |
-| **Developer Instagram** | https://www.instagram.com/pranav_sharma.official/ |
-| **Developer Website** | https://pranav-sharma.dev/ |
+| **Repository** | [Repo Link](https://github.com/Pranav-Sharma-Official/ps-linky-url-shortener) |
+| **Frontend Repository** | [Frontend Link](https://github.com/Pranav-Sharma-Official/ps-linky-url-shortener/tree/main/urlshortener-frontend) |
+| **Backend Repository** | [Backend Link](https://github.com/Pranav-Sharma-Official/ps-linky-url-shortener/tree/main/urlshortener) |
+| **Live Demo** | [Live Link](https://ps-linky.netlify.app/) |
+| **Hoppscotch Collection** | [Link](Hoppscotch_Export.json) |
+| **Docker Hub** | [Image Link](https://hub.docker.com/repository/docker/pranavsharmaofficial/ps-linky-url-shortener/general) |
+| **Video Demo** | Uploading Soon |
+| **Developer GitHub** | [Profile Link](https://github.com/Pranav-Sharma-Official/) |
+| **Developer LinkedIn** | [Let's Connect](https://www.linkedin.com/in/-pranav--sharma-/) |
+| **Developer Instagram** | [Instagram Link](https://www.instagram.com/pranav_sharma.official/) |
+| **Developer Website** | [Website](https://pranav-sharma.dev/) |
 
 ---
-
-# Screenshots
-
-No screenshot files were found in the repository directories scanned. The repository contains a `Schematic Diagram.png` in the root `URL_Shortener/` directory and references `/images/img2.png` as a public asset in the frontend, but no UI screenshots are stored in the project.
-
-**Recommended screenshots to capture for the portfolio:**
-1. Landing page (hero section with animation)
-2. Login page
-3. Register page
-4. Dashboard — URL list with click counts and creation dates
-5. Dashboard — Total clicks bar chart
-6. "Create New Short URL" modal
-7. Per-URL analytics panel with bar chart
-8. Mobile responsive view of the navbar (hamburger open)
-9. Empty state dashboard (no links yet)
-10. Error page
-
----
-
-# Resume Description
-
-- **Engineered PS Linky**, a full-stack URL shortening platform using **Spring Boot 4 (Java 26)**, **React 19**, and **PostgreSQL (Neon serverless)**, featuring stateless **JWT authentication** with BCrypt password hashing, a **RESTful API** with 7 endpoints, and a multi-stage **Dockerized** backend deployed to production.
-
-- **Architected a real-time click analytics system** collecting per-click event timestamps stored in a normalized relational schema (3 tables), with server-side Java Streams aggregation producing date-grouped click data, visualized as interactive **Chart.js bar charts** on a responsive React dashboard with **TanStack React Query** caching and lazy-loaded analytics panels.
-
-- **Implemented production-grade security** with a custom `OncePerRequestFilter` JWT interceptor, role-based `@PreAuthorize` method-level authorization, environment-variable–driven secret management, and dynamic CORS restriction to a configurable allowed origin — eliminating hardcoded secrets across two deployment environments (MySQL/dev, Neon PostgreSQL/prod).
-
----
-
-# GitHub Description
-
-> **PS Linky** — A full-stack URL shortener built with Spring Boot 4 (Java 26) + React 19. Features JWT authentication, BCrypt password hashing, click analytics with Chart.js bar charts, TanStack React Query, and a multi-stage Dockerized backend connected to Neon serverless PostgreSQL in production.
->
-> `Spring Boot` `React` `JWT` `PostgreSQL` `Docker` `TailwindCSS` `Chart.js` `TanStack Query` `Framer Motion`
-
----
-
-# Portfolio Description
-
-**PS Linky** is a production-ready, full-stack URL shortening application that demonstrates end-to-end software engineering — from database design through REST API development to a polished, animated frontend.
-
-On the backend, PS Linky uses Spring Boot 4 with a three-layer architecture (Controller → Service → Repository), stateless JWT authentication secured with HMAC-SHA signing, BCrypt password hashing, dynamic CORS configuration, and method-level role-based authorization. The URL shortening algorithm generates 8-character alphanumeric slugs from a 62-character alphabet, providing over 218 trillion unique combinations. Every redirect atomically records both a cumulative click counter and a timestamped click event, enabling powerful date-range analytics.
-
-The frontend is a fast Vite + React 19 SPA with TailwindCSS styling, Framer Motion entrance animations, TanStack React Query for server-state caching, Chart.js for interactive click analytics bar charts, and `react-hook-form` for validated form management. The project is containerized with a multi-stage Docker build and deploys to production using Neon serverless PostgreSQL.
-
----
-
-# Elevator Pitch
-
-> "PS Linky is a full-stack URL shortener I built from scratch using Spring Boot on the backend and React on the frontend.
->
-> Users register and log in — their passwords are BCrypt-hashed and sessions are managed with JWTs that I validate using a custom Spring Security filter on every request. Once logged in, they can shorten any URL — the backend generates an 8-character random alphanumeric slug with over 218 trillion possible combinations, saves it to a PostgreSQL database, and returns it. When someone opens the short link, the backend records the click as a timestamped event and issues a 302 redirect to the original URL.
->
-> The dashboard is built with React Query for smart caching, shows an interactive Chart.js bar chart of total daily clicks, and lets users expand any link to see a per-link analytics chart — all lazily loaded on demand.
->
-> The entire backend is containerized with a multi-stage Docker build using Eclipse Temurin Java 26, and it connects to a Neon serverless PostgreSQL instance in production. The project covers security, architecture, DevOps, and UX — the full spectrum of production software engineering."
-
----
-
-# Interview Questions
-
-1. **Why did you choose JWT over session-based authentication? What are the trade-offs?**
-2. **Walk me through exactly what happens when a user logs in — from the HTTP request to the JWT being returned.**
-3. **How does `OncePerRequestFilter` work in Spring Security and why is it important for your JWT filter?**
-4. **How does BCrypt work and why is it better than MD5 or SHA-256 for password storage?**
-5. **You disabled CSRF protection — explain why this is safe in the context of your application.**
-6. **What is the probability of a slug collision in your current implementation? How would you fix it?**
-7. **Why do you maintain both a `click_count` integer on `UrlMapping` AND a separate `ClickEvent` table?**
-8. **Explain the N+1 query problem. How did you avoid it in your analytics service?**
-9. **What is the difference between `@PreAuthorize` and configuring rules in `SecurityFilterChain`? When would you use each?**
-10. **Why does TanStack React Query v5 remove the `onError` callback? How did you handle this?**
-11. **Explain the purpose of `staleTime` in React Query. What value did you choose and why?**
-12. **How does CORS work? What is a preflight request and why did you need to `permitAll()` OPTIONS requests in Spring Security?**
-13. **Walk me through the two-hop redirect flow from the user clicking the short link to arriving at the destination.**
-14. **Why use a multi-stage Docker build? What would happen if you only had one stage?**
-15. **How does Spring Data JPA translate `findByUrlMappingAndClickDateBetween()` into SQL?**
-16. **What is `HikariCP` and why does Spring Boot use it by default?**
-17. **What does `@Transactional` on `loadUserByUsername` do? Why is it necessary?**
-18. **How does your `PrivateRoute` component work? What problem does it solve?**
-19. **Why store the JWT in `localStorage` instead of an HttpOnly cookie? What are the security implications of each?**
-20. **What is `ddl-auto=update` and what are the risks of using it in production?**
-21. **How would you add URL expiration? What changes would be required at the DB, service, and API layers?**
-22. **How would you implement rate limiting on the URL creation endpoint?**
-23. **How would you scale this application to handle 10 million redirects per day?**
-24. **Explain the `@ManyToOne` and `@OneToMany` relationship between your entities. What SQL does Hibernate generate?**
-25. **If you had to add geographic analytics (tracking country of the click), how would you implement it end-to-end?**
-
----
-
-# Hidden Engineering Highlights
-
-> **Things that signal genuine experience to senior engineers and technical recruiters:**
-
-1. **Dual-environment `.env` separation** — Using `.env` (MySQL, local) and `.env.prod` (Neon PostgreSQL) with Hibernate dialect switching via environment variable shows understanding of deployment lifecycle and configuration management.
-
-2. **`OncePerRequestFilter` implementation** — Writing a custom JWT filter that extends `OncePerRequestFilter` instead of using a generic `Filter` shows knowledge of the Spring Security filter chain internals and awareness of the "once per request" guarantee.
-
-3. **IN-clause batch analytics query** — Using `findByUrlMappingInAndClickDateBetween(List<UrlMapping>, ...)` fetches all click events for a user's links in a single SQL query instead of one query per link, demonstrating awareness of N+1 query problems.
-
-4. **Dual-record strategy on redirect** — Simultaneously incrementing the `click_count` counter AND creating a `ClickEvent` row on every redirect is an event-sourcing pattern: the counter enables O(1) display, and the event log enables flexible future analytics — this design decision shows forward-thinking architecture.
-
-5. **React Query `select` for client-side transformation** — Using `select` in `useFetchMyShortUrls` to sort the API response client-side (by `createdDate` descending) is the idiomatic React Query pattern — it shows familiarity with the library's advanced API.
-
-6. **`viewport={{ once: true }}` on Framer Motion animations** — Preventing repeated animations on scroll re-entry is a UX polish detail that shows attention to production quality beyond just making things work.
-
-7. **`SubDomainRouter` export** — Exporting a secondary `SubDomainRouter` from `AppRouter.jsx` suggests forward thinking toward subdomain-based short URL resolution (e.g., `xyz.pslinky.com` instead of `pslinky.com/s/xyz`), indicating architectural planning beyond the current implementation.
-
-8. **Environment-variable CORS origin** — Injecting the allowed CORS origin from `${FRONTEND_URL}` instead of hardcoding `"http://localhost:5173"` makes the backend deployment-agnostic and follows the Twelve-Factor App methodology.
-
-9. **Maven dependency pre-caching in Docker** — `RUN ./mvnw dependency:go-offline` as a separate layer before copying source code means Docker's layer cache is used on rebuilds — only the source copy and compile steps re-run if source changes, not the dependency download. This is a professional Docker optimization.
-
-10. **Ghost bar chart for empty state** — Rendering placeholder phantom bars (`[1,2,3,4,5,6,7,6,5,4,3,2,1]` with very low opacity) when no click data exists is a professional UX pattern (used by tools like Google Analytics and Stripe) that avoids a jarring empty white box.
-
----
-
-# Suggested Badges
-
-Add these to the top of your `README.md`:
-
-```markdown
-![Java](https://img.shields.io/badge/Java-26-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1.0-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Multi--Stage-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Maven](https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-4-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)
-```
