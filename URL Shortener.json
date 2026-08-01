@@ -1,0 +1,145 @@
+{
+  "v": 12,
+  "name": "URL Shortener",
+  "folders": [],
+  "requests": [
+    {
+      "v": "17",
+      "name": "Register",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/api/auth/public/register",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"username\": \"pranav_sharma\",\n  \"email\": \"job.pranav.sharma@gmail.com\",\n  \"role\": [\"ROLE_USER\"],\n  \"password\": \"12345678\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "Login",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/api/auth/public/login",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"username\": \"pranav_sharma\",\n  \"password\": \"12345678\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "Shorten",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/api/urls/shorten",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "bearer",
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFuYXZfc2hhcm1hIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3ODQzNzMzOTAsImV4cCI6MTc4NDU0NjE5MH0.2nP2HSyUPc80WYFNllUs5dBgSuwbIboueiJetkP3rTzd9fyxv237mFmlUwA66HWdHTbuvycrEM28UACx-M8K3A",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"originalUrl\": \"https://pranav-sharma.dev\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "My URLs",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/api/urls/myurls",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "bearer",
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFuYXZfc2hhcm1hIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3ODQzNzMzOTAsImV4cCI6MTc4NDU0NjE5MH0.2nP2HSyUPc80WYFNllUs5dBgSuwbIboueiJetkP3rTzd9fyxv237mFmlUwA66HWdHTbuvycrEM28UACx-M8K3A",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "URL Analytics",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/api/urls/analytics/abc123?startDate=2026-07-18T00:00:00&endDate=2026-12-24T23:59:59",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "bearer",
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFuYXZfc2hhcm1hIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3ODQzNzMzOTAsImV4cCI6MTc4NDU0NjE5MH0.2nP2HSyUPc80WYFNllUs5dBgSuwbIboueiJetkP3rTzd9fyxv237mFmlUwA66HWdHTbuvycrEM28UACx-M8K3A",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "Total Clicks Analytics",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/api/urls/analytics/totalClicks?startDate=2026-07-18T00:00:00&endDate=2026-12-24T23:59:59",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    }
+  ],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "headers": [],
+  "variables": [],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}
