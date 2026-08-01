@@ -405,8 +405,8 @@ All endpoints can be actively tested using the provided Postman/Hoppscotch colle
 
 ## 📚 Documentation
 
-- [Technical Documentation](PS_Linky_Documentation.md)
-- [Hoppscotch Collection](URL_Shortener.json)
+- [Technical Documentation](docs/PS_Linky_Documentation.md)
+- [Hoppscotch Collection](docs/Hoppscotch_Export.json)
 - [Docker Hub Image](https://hub.docker.com/repository/docker/pranavsharmaofficial/ps-linky-url-shortener/general)
 - [Architecture Diagram](images/Schematic_Diagram.png)
 
